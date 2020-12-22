@@ -12,5 +12,8 @@ setup(
     entry_points={
         "console_scripts": ["receiptapi=receiptapi.server:run"],
     },
+    install_requires=[
+        "eve",
+    ],
     zip_safe=False,
 )
