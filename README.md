@@ -12,11 +12,6 @@ Please note, this is not production code, and should not be used for anything se
 
 [Mongodb](https://docs.mongodb.com/manual/installation/#mongodb-community-edition-installation-tutorials "MongoDB")
 
-[Eve](https://docs.python-eve.org/en/stable/install.html#install "Eve")
-```bash
-pip3 install eve
-```
-
 ### receipt-api
 ```bash
 pip3 install git+https://github.com/troelsfrostholm/receipt-api.git
@@ -25,6 +20,5 @@ pip3 install git+https://github.com/troelsfrostholm/receipt-api.git
 ## Running
 
 ```bash
-cd receipt-api
-python3 main.py
+receiptapi
 ```
