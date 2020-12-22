@@ -15,5 +15,8 @@ setup(
     install_requires=[
         "eve",
     ],
+    tests_requires= [
+        "pytest",
+    ]
     zip_safe=False,
 )
