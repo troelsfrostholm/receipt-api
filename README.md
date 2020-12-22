@@ -38,4 +38,11 @@ Send a POST request to /receipts with an image of a receipt to add it.
 curl -F "image=@./test/img/receipt-1.jpg" http://127.0.0.1:5000/receipts
 ```
 
-And get it back with a GET request
+```json
+{"_updated": "Tue, 22 Dec 2020 17:51:49 GMT", "_created": "Tue, 22 Dec 2020 17:51:49 GMT", "_etag": "e49e481e9c9af5a3657d7c14fa8a991a7e539d4d", "_id": "5fe23235ace93fe3c000004d", "_links": {"self": {"title": "receipt", "href": "receipts/5fe23235ace93fe3c000004d"}}, "_status": "OK"}
+```
+
+And get it back with a GET request.Remember to replace the id with the one you got back above. 
+```bash
+curl -i http://127.0.0.1:5000/receipts/5fe23235ace93fe3c000004d
+```
