@@ -18,7 +18,14 @@ Install receipt-api:
 pip3 install git+https://github.com/troelsfrostholm/receipt-api.git
 ```
 
-## Running
+## Run the tests
+Unit tests are based on pytest and executed using tox. 
+```bash
+cd receipt-api
+tox
+```
+
+## Start the api server
 
 ```bash
 receiptapi
