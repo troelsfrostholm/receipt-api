@@ -7,12 +7,13 @@ Please note, this is not production code, and should not be used for anything se
 
 ## Installation
 
-### Dependencies
+Install the following dependencies:
+
 [Python 3](https://www.python.org/downloads/)
 
 [Mongodb](https://docs.mongodb.com/manual/installation/#mongodb-community-edition-installation-tutorials "MongoDB")
 
-### receipt-api
+Install receipt-api:
 ```bash
 pip3 install git+https://github.com/troelsfrostholm/receipt-api.git
 ```
