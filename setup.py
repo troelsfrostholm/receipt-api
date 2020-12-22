@@ -9,5 +9,8 @@ setup(
     author_email="troelsfrostholm@gmail.com",
     license="GPLv3.0",
     packages=["receiptapi"],
+    entry_points = {
+        'console_scripts': ['receiptapi=receiptapi.server:run'],
+    }
     zip_safe=False,
 )
