@@ -19,7 +19,7 @@ pip3 install eve
 
 ### receipt-api
 ```bash
-git clone git@github.com:troelsfrostholm/receipt-api.git
+pip3 install git+https://github.com/troelsfrostholm/receipt-api.git
 ```
 
 ## Running
