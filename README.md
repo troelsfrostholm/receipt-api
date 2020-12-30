@@ -30,10 +30,8 @@ tox
 Installing with pip installs the following command to start the server, which can be invoked from anywhere.
 
 ```bash
-receiptapi
-```
+$ receiptapi
 
-```
  * Serving Flask app "eve" (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
