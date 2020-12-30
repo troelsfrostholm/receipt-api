@@ -42,35 +42,11 @@ $ receiptapi
 
 ## Example usage
 
-The receipt api is used for uploading an image of a receipt. The receipt is scanned for data, including the name of the store, the items bought and their prices, and the grand total. Receipts are linked to an account. 
+The receipt api is used for uploading an image of a receipt. The receipt is scanned for data, including the name of the store, the items bought and their prices, and the grand total. 
 
 A typical usage example could be the following: 
 
-POST a new account to accounts/ with the name "sallary-account":
-```bash
-  curl -d "name=sallary-account" -X POST http://localhost/accounts
-```
-
-The response should be something like
-```json
-{
-  "_updated": "Wed, 30 Dec 2020 15:33:16 GMT",
-  "_created": "Wed, 30 Dec 2020 15:33:16 GMT",
-  "_etag": "609c0a718a41becc4f3186baa9cc0142c616d37d",
-  "_id": "5fec9dbc65ccf59ec6bc8b90",
-  "_links": {
-    "self": {
-      "title": "account",
-      "href": "accounts/5fec9dbc65ccf59ec6bc8b90"
-    }
-  },
-  "_status": "OK"
-}
-```
-
-Notice that the id of the new account is included. 
-
-POST a new receipt image linked with the new account:
+POST a new receipt image:
 ```bash
 curl -F "image=@./tests/img/receipt-1.jpg" http://127.0.0.1:5000/receipt_images
 ```
@@ -98,7 +74,6 @@ curl -i http://127.0.0.1:5000/receipts/where={"receipt_image": "5fec9dbc65ccf59e
 
 ```json
 {
-    "account_id": "5fec9dbc65ccf59ec6bc8b90",
     "receipt_image_id": "5fec9dbc65ccf59ec6bc8b90",
     "store": "Brugsen",
     "items":  [ {"title": "Milk", "price": 37.50} ],
