@@ -1,5 +1,5 @@
 """
-  End-to-end tests of the /receipts/ resource
+  End-to-end tests of the /receipt_images/ resource
 """
 
 from unittest import TestCase
@@ -13,20 +13,20 @@ def clearDb():
 
     mongo_client = MongoClient("mongodb://localhost:27017")
     mydb = mongo_client[dbname]
-    mydb["receipts"].drop()
+    mydb["receipt_images"].drop()
 
 
-class ReceiptsGetTest(TestCase):
+class ReceiptImagesGetTest(TestCase):
     """ Tests GET requests """
 
     def setUp(self):
         pass
 
-    def testGetReceipt(self):
-        """ Trying to GET a non-existing receipt yields a 404 'resource not found' response """
+    def testGetReceiptImage(self):
+        """ Trying to GET a non-existing receipt_image yields a 404 'resource not found' response """
 
         response = requests.get(
-            "http://127.0.0.1:5000/receipts/5fe23235ace93fe3c000004d"
+            "http://127.0.0.1:5000/receipt_images/5fe23235ace93fe3c000004d"
         )
         self.assertEqual(response.status_code, 404)
 
@@ -34,17 +34,17 @@ class ReceiptsGetTest(TestCase):
         clearDb()
 
 
-class ReceiptsPostTest(TestCase):
+class ReceiptImagesPostTest(TestCase):
     """ Tests POST requests """
 
     def setUp(self):
         pass
 
-    def testPostReceipt(self):
-        """ POSTing a new vaild receipt with an image file yields a 201 'created' response"""
+    def testPostReceiptImage(self):
+        """ POSTing a new vaild receipt_image with an image file yields a 201 'created' response"""
 
         files = {"image": open("tests/img/receipt-1.jpg", "rb")}
-        response = requests.post("http://127.0.0.1:5000/receipts/", files=files)
+        response = requests.post("http://127.0.0.1:5000/receipt_images/", files=files)
         self.assertEqual(response.status_code, 201)
 
     def tearDown(self):

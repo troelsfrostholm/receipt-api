@@ -3,13 +3,13 @@ from eve import Eve
 receipts_schema = {"image": {"type": "media"}}
 
 receipts = {
-    "item_title": "receipt",
+    "item_title": "receipt_image",
     "resource_methods": ["GET", "POST"],
     "schema": receipts_schema,
 }
 
 my_settings = {
-    "DOMAIN": {"receipts": receipts},
+    "DOMAIN": {"receipt_images": receipts},
     "MONGO_HOST": "localhost",
     "MONGO_PORT": 27017,
     # To simplify this demo, authorization on MongoDB is disabled
@@ -17,7 +17,7 @@ my_settings = {
     # MONGO_USERNAME : "<your username>"
     # MONGO_PASSWORD : "<your password>"
     # MONGO_AUTH_SOURCE : "<dbname>"
-    "MONGO_DBNAME": "receipts",
+    "MONGO_DBNAME": "receipt_images",
     # Enable reads (GET), inserts (POST) and DELETE for resources/collections
     # (if you omit this line, the API will default to ['GET'] and provide
     # read-only access to the endpoint).
