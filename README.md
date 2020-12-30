@@ -69,7 +69,7 @@ curl -F "image=@./tests/img/receipt-1.jpg" http://127.0.0.1:5000/receipt_images
 
 Behind the scenes, a receipt resource has been created. It can be retrieved with a GET request:
 ```bash
-curl -i http://127.0.0.1:5000/receipts/where={"receipt_image": "5fec9dbc65ccf59ec6bc8b90"}
+ curl -i -g http://127.0.0.1:5000/receipts?where={%22receipt_image_id%22:%225fec9dbc65ccf59ec6bc8b90%22}
 ```
 
 ```json
