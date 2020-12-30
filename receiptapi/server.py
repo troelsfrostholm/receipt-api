@@ -17,7 +17,7 @@ my_settings = {
     # MONGO_USERNAME : "<your username>"
     # MONGO_PASSWORD : "<your password>"
     # MONGO_AUTH_SOURCE : "<dbname>"
-    "MONGO_DBNAME": "apitest",
+    "MONGO_DBNAME": "receipts",
     # Enable reads (GET), inserts (POST) and DELETE for resources/collections
     # (if you omit this line, the API will default to ['GET'] and provide
     # read-only access to the endpoint).
@@ -28,8 +28,9 @@ my_settings = {
 }
 
 
-def run(dbname="apitest"):
-    my_settings["MONGO_DBNAME"] = dbname
+def run(dbname=None):
+    if dbname:
+        my_settings["MONGO_DBNAME"] = dbname
     app = Eve(settings=my_settings)
     app.run()
 

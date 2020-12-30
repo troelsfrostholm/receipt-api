@@ -1,5 +1,6 @@
 from unittest import TestCase
 import requests
+from pymongo import MongoClient
 
 
 class APITest(TestCase):
@@ -18,4 +19,5 @@ class APITest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def tearDown(self):
-        pass
+        mongo_client = MongoClient("mongodb://localhost:27017")
+        mongo_client.drop_database("receipts_test")
