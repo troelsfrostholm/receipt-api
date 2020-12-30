@@ -3,7 +3,7 @@ A RESTful web api for organizing and storing receipts.
 
 receipt-api is a demo project for a job interview with [OTH.IO](http://www.oth.io/ "OTH.IO")
 
-Please note, this is not production code, and should not be used for anything serious whatsoever. Use at your own risk, and only while having fun!
+Please note, this is **not production code**, and **should not be used for anything serious** whatsoever. Use at your own risk, and only while having fun!
 
 ## Installation
 
