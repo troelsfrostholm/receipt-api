@@ -98,8 +98,8 @@ curl -i http://127.0.0.1:5000/receipts/where={"receipt_image": "5fec9dbc65ccf59e
 
 ```json
 {
-    "account": "5fec9dbc65ccf59ec6bc8b90",
-    "receipt_image": "5fec9dbc65ccf59ec6bc8b90",
+    "account_id": "5fec9dbc65ccf59ec6bc8b90",
+    "receipt_image_id": "5fec9dbc65ccf59ec6bc8b90",
     "store": "Brugsen",
     "items":  [ {"title": "Milk", "price": 37.50} ],
     "total": 37.50,
