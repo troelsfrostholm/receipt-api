@@ -18,17 +18,28 @@ Install receipt-api:
 pip3 install git+https://github.com/troelsfrostholm/receipt-api.git
 ```
 
-## Run the tests
-Unit tests are based on pytest and executed using tox. 
+## Run the tests (optional)
+Unit tests are based on pytest and executed using tox. In order to run the tests, the repository must be cloned. 
 ```bash
+git clone git://github.com/troelsfrostholm/receipt-api.git
 cd receipt-api
 tox
 ```
 
 ## Start the api server
+Installing with pip installs the following command to start the server, which can be invoked from anywhere.
 
 ```bash
 receiptapi
+```
+
+```
+ * Serving Flask app "eve" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
 
 ## Example usage
