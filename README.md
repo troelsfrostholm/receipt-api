@@ -31,18 +31,82 @@ tox
 receiptapi
 ```
 
-Try it out with a few calls, for instance using curl. 
+## Example usage
 
-Send a POST request to /receipts with an image of a receipt to add it. 
+The receipt api is used for uploading an image of a receipt. The receipt is scanned for data, including the name of the store, the items bought and their prices, and the grand total. Receipts are linked to an account. 
+
+A typical usage example could be the following: 
+
+POST a new account to accounts/ with the name "sallary-account":
 ```bash
-curl -F "image=@./test/img/receipt-1.jpg" http://127.0.0.1:5000/receipts
+  curl -d "name=sallary-account" -X POST http://localhost/accounts
+```
+
+The response should be something like
+```json
+{
+  "_updated": "Wed, 30 Dec 2020 15:33:16 GMT",
+  "_created": "Wed, 30 Dec 2020 15:33:16 GMT",
+  "_etag": "609c0a718a41becc4f3186baa9cc0142c616d37d",
+  "_id": "5fec9dbc65ccf59ec6bc8b90",
+  "_links": {
+    "self": {
+      "title": "account",
+      "href": "accounts/5fec9dbc65ccf59ec6bc8b90"
+    }
+  },
+  "_status": "OK"
+}
+```
+
+Notice that the id of the new account is included. 
+
+POST a new receipt image linked with the new account:
+```bash
+curl -F "image=@./tests/img/receipt-1.jpg" http://127.0.0.1:5000/receipt_images
 ```
 
 ```json
-{"_updated": "Tue, 22 Dec 2020 17:51:49 GMT", "_created": "Tue, 22 Dec 2020 17:51:49 GMT", "_etag": "e49e481e9c9af5a3657d7c14fa8a991a7e539d4d", "_id": "5fe23235ace93fe3c000004d", "_links": {"self": {"title": "receipt", "href": "receipts/5fe23235ace93fe3c000004d"}}, "_status": "OK"}
+{
+  "_updated": "Wed, 30 Dec 2020 15:33:16 GMT",
+  "_created": "Wed, 30 Dec 2020 15:33:16 GMT",
+  "_etag": "609c0a718a41becc4f3186baa9cc0142c616d37d",
+  "_id": "5fec9dbc65ccf59ec6bc8b90",
+  "_links": {
+    "self": {
+      "title": "receipt_image",
+      "href": "receipt_images/5fec9dbc65ccf59ec6bc8b90"
+    }
+  },
+  "_status": "OK"
+}
 ```
 
-And get it back with a GET request.Remember to replace the id with the one you got back above. 
+Behind the scenes, a receipt resource has been created. It can be retrieved with a GET request:
 ```bash
-curl -i http://127.0.0.1:5000/receipts/5fe23235ace93fe3c000004d
+curl -i http://127.0.0.1:5000/receipts/where={"receipt_image": "5fec9dbc65ccf59ec6bc8b90"}
 ```
+
+```json
+{
+    "account": "5fec9dbc65ccf59ec6bc8b90",
+    "receipt_image": "5fec9dbc65ccf59ec6bc8b90",
+    "store": "Brugsen",
+    "items":  [ {"title": "Milk", "price": 37.50} ],
+    "total": 37.50,
+    "currency": "DKK",
+    "_id": "50acfba938345b0978fccad7",
+    "_updated": "Wed, 30 Dec 2020 15:33:16 GMT",
+    "_created": "Wed, 30 Dec 2020 15:33:16 GMT",
+    "_etag": "28995829ee85d69c4c18d597a0f68ae606a266cc",
+    "_links": {
+        "self": {"href": "receipts/50acfba938345b0978fccad7", "title": "receipt"},
+        "parent": {"href": "/", "title": "home"},
+        "collection": {"href": "receipts", "title": "receipts"}
+    }
+}
+```
+
+## Documentation
+
+The full API documentation can be found (here)[DOCUMENTATION.md]
