@@ -109,4 +109,4 @@ curl -i http://127.0.0.1:5000/receipts/where={"receipt_image": "5fec9dbc65ccf59e
 
 ## Documentation
 
-The full API documentation can be found (here)[DOCUMENTATION.md]
+The full API documentation can be found [here](DOCUMENTATION.md)
