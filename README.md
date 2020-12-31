@@ -67,7 +67,9 @@ curl -F "image=@./tests/img/receipt-1.jpg" http://127.0.0.1:5000/receipt_images
 }
 ```
 
-Behind the scenes, a receipt resource has been created. It can be retrieved with a GET request:
+Notice that an id for the created resource is returned as part of the json response. 
+
+Behind the scenes, a receipt resource has been created. It can be retrieved with a GET request. Replace the receipt_image_id below with the id that was returned above. 
 ```bash
  curl -i -g http://127.0.0.1:5000/receipts?where={%22receipt_image_id%22:%225fec9dbc65ccf59ec6bc8b90%22}
 ```
