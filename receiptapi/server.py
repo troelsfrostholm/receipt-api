@@ -1,5 +1,5 @@
 """
-    Description and functionality of the REST API
+    REST API definition and server application
 
 """
 
