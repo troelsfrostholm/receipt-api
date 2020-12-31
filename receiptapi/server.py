@@ -115,6 +115,7 @@ def run(dbname=None):
 
     app = Eve(settings=settings)
 
+    # Set up Eve-Swagger for serving API documentation at /docs
     swagger = get_swagger_blueprint()
     app.register_blueprint(swagger)
 
@@ -125,7 +126,7 @@ def run(dbname=None):
         "termsOfService": "Use at your own risk",
         "contact": {
             "name": "troelsfrostholm",
-            "url": "https://github.com/troelsfrostholm",
+            "url": "https://github.com/troelsfrostholm/receipt-api",
         },
         "license": {
             "name": "GPLv3.0",
@@ -134,6 +135,7 @@ def run(dbname=None):
         "schemes": ["http"],
     }
 
+    # Register callback for extracting data from image
     app.on_inserted_receipt_images += receipt_images_inserted
 
     app.run()

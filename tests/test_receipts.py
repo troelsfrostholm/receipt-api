@@ -16,24 +16,6 @@ def clearDb():
     mydb["receipt_images"].drop()
 
 
-class ReceiptImagesGetTest(TestCase):
-    """ Tests GET requests """
-
-    def setUp(self):
-        pass
-
-    def testGetReceiptImage(self):
-        """ Trying to GET a non-existing receipt_image yields a 404 'resource not found' response """
-
-        response = requests.get(
-            "http://127.0.0.1:5000/receipt_images/5fe23235ace93fe3c000004d"
-        )
-        self.assertEqual(response.status_code, 404)
-
-    def tearDown(self):
-        clearDb()
-
-
 class ReceiptImagesPostTest(TestCase):
     """ Tests POST requests """
 
@@ -46,6 +28,32 @@ class ReceiptImagesPostTest(TestCase):
         files = {"image": open("tests/img/receipt-1.jpg", "rb")}
         response = requests.post("http://127.0.0.1:5000/receipt_images/", files=files)
         self.assertEqual(response.status_code, 201)
+
+    def tearDown(self):
+        clearDb()
+
+
+class ReceiptImagesGetTest(TestCase):
+    """ Tests GET requests """
+
+    def setUp(self):
+        files = {"image": open("tests/img/receipt-1.jpg", "rb")}
+        response = requests.post("http://127.0.0.1:5000/receipt_images/", files=files)
+        self.imageId = response.json()["_id"]
+
+    def testGetMissingReceiptImage(self):
+        """ Trying to GET a non-existing receipt_image yields a 404 'resource not found' response """
+
+        response = requests.get(
+            "http://127.0.0.1:5000/receipt_images/5fe23235ace93fe3c000004d"
+        )
+        self.assertEqual(response.status_code, 404)
+
+    def testGetReceiptImage(self):
+        """ Trying to GET a non-existing receipt_image yields a 404 'resource not found' response """
+
+        response = requests.get("http://127.0.0.1:5000/receipt_images/" + self.imageId)
+        self.assertEqual(response.status_code, 200)
 
     def tearDown(self):
         clearDb()
