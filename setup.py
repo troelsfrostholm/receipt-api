@@ -12,6 +12,6 @@ setup(
     entry_points={
         "console_scripts": ["receiptapi=receiptapi.server:run"],
     },
-    install_requires=["eve", "tox"],
+    install_requires=["eve", "eve-swagger", "tox"],
     zip_safe=False,
 )

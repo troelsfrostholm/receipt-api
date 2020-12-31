@@ -4,6 +4,7 @@
 """
 
 from eve import Eve
+from eve_swagger import get_swagger_blueprint, add_documentation
 
 """
   Receipt images
@@ -113,7 +114,28 @@ def run(dbname=None):
         settings["MONGO_DBNAME"] = dbname
 
     app = Eve(settings=settings)
+
+    swagger = get_swagger_blueprint()
+    app.register_blueprint(swagger)
+
+    app.config["SWAGGER_INFO"] = {
+        "title": "Receipt API",
+        "version": "0.1",
+        "description": "A RESTful web api for organizing and storing receipts",
+        "termsOfService": "Use at your own risk",
+        "contact": {
+            "name": "troelsfrostholm",
+            "url": "https://github.com/troelsfrostholm",
+        },
+        "license": {
+            "name": "GPLv3.0",
+            "url": "https://github.com/troelsfrostholm/receipt-api/blob/main/LICENSE",
+        },
+        "schemes": ["http"],
+    }
+
     app.on_inserted_receipt_images += receipt_images_inserted
+
     app.run()
 
 
