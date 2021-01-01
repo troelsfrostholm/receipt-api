@@ -137,5 +137,34 @@ class ReceiptImagesGetTest(TestCase):
 
         self.assertEqual(expectedImageData, imageData)
 
+    def testGetReceiptImages(self):
+        """ GETting an existing receipt_image """
+
+        response = requests.get("http://127.0.0.1:5000/receipt_images/")
+
+        #  yields a 200 'OK' response
+        self.assertEqual(response.status_code, 200)
+
+        # of content type json
+        self.assertEqual(response.headers["content-type"], "application/json")
+
+        # with the body a json document
+        json = response.json()
+
+        # it has one item
+        self.assertEqual(len(json["_items"]), 1)
+
+        # which contains the inserted id
+        self.assertEqual(json["_items"][0]["_id"], self.imageId)
+
+        # and the correct image data
+        imageData = json["_items"][0]["image"]
+
+        with open(self.imageFilename, "rb") as imageFile:
+            expectedImageData = base64.b64encode(imageFile.read())
+            expectedImageData = str(expectedImageData, "utf-8")
+
+        self.assertEqual(expectedImageData, imageData)
+
     def tearDown(self):
         clearDb()
