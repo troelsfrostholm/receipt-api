@@ -168,3 +168,39 @@ class ReceiptImagesGetTest(TestCase):
 
     def tearDown(self):
         clearDb()
+
+
+class ReceiptImagesDeleteTest(TestCase):
+    """ Tests DELETE requests """
+
+    def setUp(self):
+        """ POST an image that can be used to test DELETE """
+        self.imageFilename = "tests/img/receipt-1.jpg"
+        with open(self.imageFilename, "rb") as imageFile:
+            files = {"image": imageFile}
+            response = requests.post(
+                "http://127.0.0.1:5000/receipt_images/", files=files
+            )
+        self.imageId = response.json()["_id"]
+        self.imageEtag = response.json()["_etag"]
+
+    def testDeleteReceiptImage(self):
+        """ DELETEing an existing image """
+
+        headers = {"if-match": self.imageEtag}
+        url = "http://127.0.0.1:5000/receipt_images/" + self.imageId
+        response = requests.delete(url, headers=headers)
+
+        # yields a 204 'NO CONTENT' response
+        self.assertEqual(response.status_code, 204)
+
+        # with an empty body
+        self.assertEqual(response.text, "")
+
+        # and the image has been removed from the database
+        imageDoc = conftest.db["receipt_images"].find()
+        imageDoc = list(imageDoc)
+        self.assertEqual(imageDoc, [])
+
+    def tearDown(self):
+        clearDb()
