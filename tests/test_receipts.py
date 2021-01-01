@@ -7,6 +7,7 @@ import requests
 import conftest
 from datetime import datetime, timezone
 import re
+import base64
 
 
 def clearDb():
@@ -76,8 +77,13 @@ class ReceiptImagesGetTest(TestCase):
     """ Tests GET requests """
 
     def setUp(self):
-        files = {"image": open("tests/img/receipt-1.jpg", "rb")}
-        response = requests.post("http://127.0.0.1:5000/receipt_images/", files=files)
+        """ POST an image that can be used to test GETing """
+        self.imageFilename = "tests/img/receipt-1.jpg"
+        with open(self.imageFilename, "rb") as imageFile:
+            files = {"image": imageFile}
+            response = requests.post(
+                "http://127.0.0.1:5000/receipt_images/", files=files
+            )
         self.imageId = response.json()["_id"]
 
     def testGetMissingReceiptImage(self):
@@ -106,10 +112,30 @@ class ReceiptImagesGetTest(TestCase):
         self.assertEqual(response.next, None)
 
     def testGetReceiptImage(self):
-        """ GETting an existing receipt_image yields a 200 'OK' response """
+        """ GETting an existing receipt_image """
 
         response = requests.get("http://127.0.0.1:5000/receipt_images/" + self.imageId)
+
+        #  yields a 200 'OK' response
         self.assertEqual(response.status_code, 200)
+
+        # of content type json
+        self.assertEqual(response.headers["content-type"], "application/json")
+
+        # with the body a json document
+        json = response.json()
+
+        # with the requested id
+        self.assertEqual(json["_id"], self.imageId)
+
+        # and the correct image data
+        imageData = json["image"]
+
+        with open(self.imageFilename, "rb") as imageFile:
+            expectedImageData = base64.b64encode(imageFile.read())
+            expectedImageData = str(expectedImageData, "utf-8")
+
+        self.assertEqual(expectedImageData, imageData)
 
     def tearDown(self):
         clearDb()
