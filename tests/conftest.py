@@ -12,6 +12,9 @@ dbname = "receipts_test"
 """ MongoDB client object """
 mongoClient = None
 
+""" Database object """
+db = None
+
 
 def run_server():
     sys.stdout = open("server-test.log", "w")
@@ -24,9 +27,10 @@ serverProcess = Process(target=run_server)
 
 def pytest_sessionstart(session):
     """ Callback runs before all tests """
-    global mongoClient
+    global mongoClient, db
 
     mongoClient = MongoClient("mongodb://localhost:27017")
+    db = mongoClient[dbname]
 
     serverProcess.start()
     # Let the server start up before running the test

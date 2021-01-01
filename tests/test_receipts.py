@@ -12,8 +12,7 @@ import re
 def clearDb():
     """ Clears the database """
 
-    mydb = conftest.mongoClient[conftest.dbname]
-    mydb["receipt_images"].drop()
+    conftest.db["receipt_images"].drop()
 
 
 class ReceiptImagesPostTest(TestCase):
@@ -64,6 +63,10 @@ class ReceiptImagesPostTest(TestCase):
         # HTTP response link headers are empty
         self.assertEqual(response.links, {})
         self.assertEqual(response.next, None)
+
+        # The image has been inserted into the database
+        imageDoc = conftest.db["receipt_images"].find_one()
+        self.assertEqual(str(imageDoc["_id"]), json["_id"])
 
     def tearDown(self):
         clearDb()
