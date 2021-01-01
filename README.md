@@ -95,4 +95,4 @@ Behind the scenes, a receipt resource has been created. It can be retrieved with
 
 ## Documentation
 
-The full API documentation can be found at [http://127.0.0.1:5000/docs/](http://127.0.0.1:5000/docs/).
+When the server is running, the full API documentation can be found at [http://127.0.0.1:5000/docs/](http://127.0.0.1:5000/docs/).
