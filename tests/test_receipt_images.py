@@ -10,12 +10,6 @@ import re
 import base64
 
 
-def clearDb():
-    """ Clears the database """
-
-    conftest.db["receipt_images"].drop()
-
-
 class ReceiptImagesPostTest(TestCase):
     """ Tests POST requests """
 
@@ -70,7 +64,7 @@ class ReceiptImagesPostTest(TestCase):
         self.assertEqual(str(imageDoc["_id"]), json["_id"])
 
     def tearDown(self):
-        clearDb()
+        conftest.clearDb()
 
 
 class ReceiptImagesGetTest(TestCase):
@@ -167,7 +161,7 @@ class ReceiptImagesGetTest(TestCase):
         self.assertEqual(expectedImageData, imageData)
 
     def tearDown(self):
-        clearDb()
+        conftest.clearDb()
 
 
 class ReceiptImagesDeleteTest(TestCase):
@@ -203,4 +197,4 @@ class ReceiptImagesDeleteTest(TestCase):
         self.assertEqual(imageDoc, [])
 
     def tearDown(self):
-        clearDb()
+        conftest.clearDb()

@@ -25,6 +25,13 @@ def run_server():
 serverProcess = Process(target=run_server)
 
 
+def clearDb():
+    """ Clears the database """
+
+    db["receipt_images"].drop()
+    db["receipts"].drop()
+
+
 def pytest_sessionstart(session):
     """ Callback runs before all tests """
     global mongoClient, db
