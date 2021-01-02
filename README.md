@@ -24,7 +24,7 @@ pip3 install git+https://github.com/troelsfrostholm/receipt-api.git
 ```
 
 ## Run the tests (optional)
-Unit tests are based on pytest and executed using tox. In order to run the tests, the repository must be cloned. 
+Unit tests are based on pytest and executed using tox. In order to run the tests, the repository must be cloned. Running the tests the first time can take a little while, as dependencies are installed. 
 ```bash
 git clone git://github.com/troelsfrostholm/receipt-api.git
 cd receipt-api
