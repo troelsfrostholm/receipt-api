@@ -11,12 +11,16 @@ Install the following dependencies:
 
 [Python 3](https://www.python.org/downloads/)
 
-[MongoDB](https://docs.mongodb.com/manual/installation/#mongodb-community-edition-installation-tutorials "MongoDB")
+[MongoDB community edition](https://docs.mongodb.com/manual/installation/#mongodb-community-edition-installation-tutorials "MongoDB")
 
-Make sure the Python package manager is up-to-date:
+[GIT](https://git-scm.com/)
+
+Make sure the Python package manager is up-to-date (if on Windows, in a command terminal with administrator rights):
 ```bash
 pip3 install --upgrade pip
 ```
+
+On Windows, the remaining instructions can be carried out in GIT's command line terminal. 
 
 Install receipt-api:
 ```bash
