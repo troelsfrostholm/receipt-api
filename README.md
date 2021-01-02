@@ -13,6 +13,11 @@ Install the following dependencies:
 
 [MongoDB](https://docs.mongodb.com/manual/installation/#mongodb-community-edition-installation-tutorials "MongoDB")
 
+Make sure the Python package manager is up-to-date:
+```bash
+pip3 install --upgrade pip
+```
+
 Install receipt-api:
 ```bash
 pip3 install git+https://github.com/troelsfrostholm/receipt-api.git
